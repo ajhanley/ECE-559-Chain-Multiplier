@@ -1,0 +1,2 @@
+data_in  => EN
+out => sel_i1
