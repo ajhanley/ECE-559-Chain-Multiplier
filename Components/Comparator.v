@@ -1,5 +1,28 @@
+//32b comparator
+module comparator_32b(x,y,eq,lt,gt);
+input [31:0] x,y;
+output eq,lt,gt;
+wire w1,w2,w3,w4,w5,w6;
+comparator_16b g1(x[15:0],y[15:0],w1,w2,w3);
+comparator_16b g2(x[31:16,y[31:16],w4,w5,w6);
+assign eq (w4&w1);
+assign lt w5 | (w4&w2);
+assign gt w6 | (w4&w3);
+
+//16b comparator
+module comparator_16b(x,y,eq,lt,gt);
+input [15:0] x,y;
+output eq,lt,gt;
+wire w1,w2,w3,w4,w5,w6;
+comparator_8b g1(x[7:0],y[7:0],w1,w2,w3);
+comparator_8b g2(x[15:8,y[15:8],w4,w5,w6);
+assign eq (w4&w1);
+assign lt w5 | (w4&w2);
+assign gt w6 | (w4&w3);
+endmodule
 //8 Bit magnitude comparator(VERIFIED ON EDA PLAYGROUND AS WORKING)
-module comparator(x,y,eq,lt,gt);
+
+module comparator_8b(x,y,eq,lt,gt);
 	input [7:0] x,y;
 	output eq,lt,gt;
 	
