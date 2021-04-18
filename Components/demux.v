@@ -9,15 +9,9 @@ module regFile( Ip1,
 
                 OpJ,
 
-                sel_oJ, 
-
-                RD,
-
-                WR, 
+                sel_oJ,  
 
                 rst,
-
-                EN, 
 
                 clk
 
@@ -32,9 +26,7 @@ module regFile( Ip1,
 
               sel_oJ; 
 
-input  RD,
 
-       WR; 
   
 
 input  EN,
