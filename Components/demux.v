@@ -13,7 +13,7 @@ module regFile( Ip1,
 
                 rst,
                
-               	EN,
+               	data_in,
 
                 clk
 
@@ -31,7 +31,7 @@ module regFile( Ip1,
 
   
 
-input  clk, EN,
+input  clk, data_in,
 
        rst; 
   
@@ -82,7 +82,7 @@ always @ (posedge sen)
 
    begin 
      
-     if (EN == 1)
+     if (data_in == 1)
        begin
        
        regFile [sel_i1] = Ip1;
@@ -126,7 +126,7 @@ module regFile_tb;
 
  reg rst;
   
- reg EN;
+ reg data_in;
 
  reg clk;
 
@@ -152,7 +152,7 @@ module regFile_tb;
  
   			   .sel_oK(sel_oK), 
 
-   .EN(EN),
+   .data_in(data_in),
                .rst(rst), 
 
                .clk(clk)
@@ -179,7 +179,7 @@ module regFile_tb;
 
   clk  = 1'b0;
    
-  EN  = 1'b0;
+  data_in  = 1'b0;
 
   // Wait 100 ns for global reset to finish
 
@@ -192,7 +192,7 @@ module regFile_tb;
    #20;
 
 	//rst  = 1'b1;
-   EN  = 1'b0;
+   data_in  = 1'b0;
    
     Ip1  = 8'b00010001; //input 17 to 0
    
@@ -200,14 +200,14 @@ module regFile_tb;
    sel_i1  = 5'h1;
 
    #20;
- EN  = 1'b1;
+ data_in  = 1'b1;
    Ip1  = 8'b00100000; // 32
 
    sel_i1  = 5'h5;
    
 
    #20;
- EN  = 1'b0;
+ data_in  = 1'b0;
    sel_oJ  = 5'h5;
 
    sel_oK  = 5'h1;
