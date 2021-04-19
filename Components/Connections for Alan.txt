@@ -1,2 +1,3 @@
 data_in  => EN
 out => sel_i1
+ret >> reset
