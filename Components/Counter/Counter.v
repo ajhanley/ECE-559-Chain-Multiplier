@@ -1,15 +1,15 @@
-module counter(input data_in, input clk, output reg[4:0] count_out, output reg[4:0] len_matrix);
-
-  always @ (posedge clk)
-  begin
-    if (~data_in)
-      begin
-        len_matrix = count_out - 1;
-    	count_out = 0;
-      end
-    else
-       count_out <= count_out + 1;
-  end 
+module Dimensional_Matrix(input clk, input data_in, output reg[4:0] count_out, output reg[4:0] len_matrix);
+  	always @ (posedge clk)
+    begin
+      if (~data_in)
+          begin
+            len_matrix = count_out - 1;
+            count_out = 0;
+          end
+      else
+          // $display(count_out-1," ",  data_in);
+          count_out <= count_out + 1;
+    end 
 
 endmodule
 
