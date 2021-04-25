@@ -1,4 +1,4 @@
-`inlcude "adder.v"
+`include "adder.v"
 //8 bit-3 Input Multiplier:
 module mult_8b_3in(A,B,C,P,zero);
 input[7:0] A,B,C;
@@ -98,11 +98,11 @@ module add_4b(a,b,s,c,Zero);
 	output c;
 	input Zero;
 	wire cout[3:0];
-  full_adder a1(a[0],b[0],Zero,s[0],cout[0],Zero);
-  full_adder a2(a[1],b[1],cout[0],s[1],cout[1],Zero);
-  full_adder a3(a[2],b[2],cout[1],s[2],cout[2],Zero);
-  full_adder a4(a[3],b[3],cout[2],s[3],cout[3],Zero);
-	assign c = cout[3];
+  full_adder a1(a[0],b[0],Zero,s[0],cout[0]);
+  full_adder a2(a[1],b[1],cout[0],s[1],cout[1]);
+  full_adder a3(a[2],b[2],cout[1],s[2],cout[2]);
+  full_adder a4(a[3],b[3],cout[2],s[3],cout[3]);
+  assign c = cout[3];
 endmodule
   
 
