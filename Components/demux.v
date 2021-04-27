@@ -1,48 +1,17 @@
 // Code your design here
-module regFile( Ip1,
-
-                sel_i1, 
-
-                OpK,
-
-                sel_oK, 
-
-                OpJ,
-
-                sel_oJ,  
-
-                rst,
-               
-               	data_in,
-
-                clk
-
-              );      
+module regFile( Ip1, sel_i1, OpI ,sel_oI, OpK,sel_oK, OpJ, sel_oJ, rst, data_in, clk );      
 
  
   input  [7:0]  Ip1; 
 
-  input  [4:0]  sel_i1,
+  input  [4:0]  sel_i1, sel_oK, sel_oJ, sel_oI; 
 
-              sel_oK,
-
-              sel_oJ; 
-
-
+  input  clk, data_in, rst; 
   
 
-input  clk, data_in,
+  output [7:0]  OpI, OpK, OpJ; 
 
-       rst; 
-  
-
-  output [7:0]  OpK,
-
-               OpJ; 
-
-  reg  [7:0]  OpK,
-
-             OpJ;       
+  reg  [7:0]   OpI, OpK, OpJ;       
 
   reg [7:0]  regFile [0:31]; 
 
@@ -72,7 +41,9 @@ always @ (posedge sen)
 
    end 
 
-   	OpK = 8'h0; 
+   	OpI = 8'h0;
+	OpK = 8'h0; 
+	OpJ = 8'h0; 	
 
    end 
    
@@ -92,6 +63,9 @@ always @ (posedge sen)
 	  
      else
        begin
+	   
+	    OpI = regFile [sel_oI]; 
+	   
       	OpJ = regFile [sel_oJ]; 
 
       	OpK = regFile [sel_oK]; 
@@ -104,6 +78,8 @@ always @ (posedge sen)
  end
 
 endmodule
+
+
 
 //Testbench/////////////////////////////////////////////////
 
