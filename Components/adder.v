@@ -8,13 +8,24 @@ module three_input_adder(in_a,in_b,in_c,sum,cout);
 	wire[6:0] first_sum;
 	wire first_cout;
 	
-	eight_bit_adder(in_a,in_b,cin,first_sum,first_cout);
-	eight_bit_adder(in_c,first_sum,first_cout,sum,cout);
+	eight_bit_adder a1(in_a,in_b,cin,first_sum,first_cout);
+	eight_bit_adder a2(in_c,first_sum,first_cout,sum,cout);
 
 
 
 endmodule 
 
+module adder_3in_32b(A,B,C,Cin,Sum,Cout);
+  
+  input[31:0] A,B,C;
+  input Cin;
+  output [31:0] Sum;
+  output Cout;
+  wire[31:0] sum1;
+  wire c1;
+  adder_32_b a1(A,B,Cin,sum1,c1);
+  adder_32_b a2(sum1,C,c1,Sum,Cout);
+endmodule
 
 
 module eight_bit_adder(a,b,cin,sum,cout);
@@ -27,17 +38,31 @@ module eight_bit_adder(a,b,cin,sum,cout);
 	wire[6:0] c;
 	
 	full_adder b1(a[0],b[0],cin,sum[0],c[0]);
-	full_adder b1(a[1],b[1],c[0],sum[1],c[1]);
-	full_adder b1(a[2],b[2],c[1],sum[2],c[2]);
-	full_adder b1(a[3],b[3],c[2],sum[3],c[3]);
-	full_adder b1(a[4],b[4],c[3],sum[4],c[4]);
-	full_adder b1(a[5],b[5],c[4],sum[5],c[5]);
-	full_adder b1(a[6],b[6],c[5],sum[6],c[6]);
-	full_adder b1(a[7],b[7],c[6],sum[7],cout);
+	full_adder b2(a[1],b[1],c[0],sum[1],c[1]);
+	full_adder b3(a[2],b[2],c[1],sum[2],c[2]);
+	full_adder b4(a[3],b[3],c[2],sum[3],c[3]);
+	full_adder b5(a[4],b[4],c[3],sum[4],c[4]);
+	full_adder b6(a[5],b[5],c[4],sum[5],c[5]);
+	full_adder b7(a[6],b[6],c[5],sum[6],c[6]);
+    full_adder b8(a[7],b[7],c[6],sum[7],cout);
 
 endmodule
 	
-
+module adder_32_b(a,b,cin,sum,cout);
+  input[31:0] a,b;
+  input cin;
+  output[31:0] sum;
+  output cout;
+  wire[3:0] c;
+  wire[7:0] sum1,sum2,sum3,sum4;
+  eight_bit_adder a1(a[7:0],b[7:0],cin,sum1,c[0]);
+  eight_bit_adder a2(a[15:8],b[15:8],c[0],sum2,c[1]);
+  eight_bit_adder a3(a[23:16],b[23:16],c[1],sum3,c[2]);
+  eight_bit_adder a4(a[31:24],b[31:24],c[2],sum4,c[3]);
+  assign sum = {sum4, sum3, sum2, sum1};
+  assign cout = c[3];
+  
+endmodule
 
 
 
@@ -61,11 +86,12 @@ module half_adder(ain,bin,sum,cout);
 	assign cout = ain&bin;
 endmodule
 
-module carry_save_add_8(A,B,Cin,S,C);
+module carry_save_add_8(A,B,Cin,S,C,zero);
 input[7:0] A,B,Cin;
+input zero;
 output[8:0] S;
-output C
-wire w1,w2,w3,w4,w5,w6,w7,w8,w9,w10,w11,w12,w13,w14,w15,w16zero;
+output C;
+wire w1,w2,w3,w4,w5,w6,w7,w8,w9,w10,w11,w12,w13,w14,w15,w16;
 wire c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15,c16;
 
 assign zero =0;
@@ -90,8 +116,9 @@ full_adder a16(c8,zero,c15,S[8],C);
 
 endmodule
 
-module carry_save_add_16(A,B,Cin,S,C);
+module carry_save_add_16(A,B,Cin,S,C,zero);
 input[15:0] A,B,Cin;
+input zero;
 output[16:0] S;
 output C;
 wire[30:0] c;

@@ -12,7 +12,7 @@ always @(posedge clk)begin
 		count=count-1;
 	end
 end
-always @(posedge rst)begin
+always @(negedge rst)begin
 	count=0;
 end
 
