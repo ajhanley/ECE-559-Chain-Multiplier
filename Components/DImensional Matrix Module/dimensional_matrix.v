@@ -1,6 +1,8 @@
 // Code your design here
 module Dimensional_Matrix( Ip1,
-  count_out, 
+  count_out,
+  OpI,
+  sel_oI,
   OpK,
   sel_oK, 
   OpJ,
@@ -12,12 +14,12 @@ module Dimensional_Matrix( Ip1,
 );      
 
 input  [7:0]  Ip1; 
-input  [4:0]  sel_oK, sel_oJ; 
+	input  [4:0]  sel_oK, sel_oJ,sel_oI; 
 
 input  clk, data_in, rst; 
-output [7:0]  OpK, OpJ, count_out, len_matrix; 
+	output [7:0]  OpK, OpJ,OpI, count_out, len_matrix; 
   
-reg  [7:0]  OpK, OpJ;       
+	reg  [7:0]  OpK, OpJ,OpI;       
 reg [7:0]  regFile [0:31]; 
   
 reg [7:0] count_out_temp;
@@ -35,7 +37,9 @@ always @ (posedge sen)
           begin
             regFile [i] = 8'h0; 
           end 
-          OpK = 8'h0; 
+          OpK = 8'h0;
+	  OpI = 8'h0;
+	  OpJ = 8'h0;
       end 
 
     else if (rst == 0) //If not at reset 
@@ -52,6 +56,7 @@ always @ (posedge sen)
             count_out_temp = 8'h0;
             OpJ = regFile [sel_oJ]; 
             OpK = regFile [sel_oK]; 
+	    OpI = regFile [sel_oI];
           end 
       end 
   end
