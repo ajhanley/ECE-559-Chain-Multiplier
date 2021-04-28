@@ -27,8 +27,8 @@ module iterate2(matlen,clk,reset,iw,jw,ir,jr,kr,rw);
     
   end
   
-  assign iw = eq & y;
-  assign jw = eq & (matlen-x+y);
+  assign iw = y;
+  assign jw = (matlen-x+y);
   assign ir = y;
   assign jr = (matlen-x+y);
   assign kr = z;

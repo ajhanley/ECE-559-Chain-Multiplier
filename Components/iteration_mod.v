@@ -1,5 +1,6 @@
-module iterate(matlen,reset,iw,jw,ir,jr,kr,rw);
+module iterate(matlen,clk,reset,iw,jw,ir,jr,kr,rw);
   input[7:0] matlen;
+  input clk;
   input reset;
   output [7:0] iw,jw,ir,jr,kr;
   output rw;
@@ -24,8 +25,8 @@ module iterate(matlen,reset,iw,jw,ir,jr,kr,rw);
     
   end
   
-  assign iw = eq & y;
-  assign jw = eq & (matlen-x+y);
+  assign iw = y;
+  assign jw = (matlen-x+y);
   assign ir = y;
   assign jr = (matlen-x+y);
   assign kr = z;
