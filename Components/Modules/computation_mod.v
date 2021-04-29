@@ -1,7 +1,7 @@
 // Code your design here
 
-`include "multiplier.v"
-`include "Comparator.v"
+`include "../Components/Multiplier.v"
+`include "../Components/Comparator.v"
 module computational_logic(pk,pi,pj,mki,mkj1,kc,clk,rst,ko,min);
   input[7:0] pk,pi,pj;
   input[31:0] mki,mkj1;
