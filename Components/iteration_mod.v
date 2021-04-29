@@ -14,7 +14,7 @@ module iterate(matlen,clk,reset,iw,jw,ir,jr,kr,rw);
     for(x=matlen; x>0; x=x-1)begin
       for(y=0; y<x; y=y+1)begin
         for(z=y; z<x; z=z+1)begin
-          #10;
+          #10;//change this delay as needed to make sure its not updating too fast
           if(z==x-2)
          	eq=1;   
           else
@@ -33,3 +33,29 @@ module iterate(matlen,clk,reset,iw,jw,ir,jr,kr,rw);
   assign rw = eq;
             
 endmodule 
+
+/*
+// Code your testbench here
+// or browse Examples
+module tb();
+  reg[7:0] matlen;
+  reg clk;
+  reg reset;
+  wire[7:0] iw,jw,ir,jr,kr;
+  wire rw;
+  
+  iterate2 count(matlen, clk,reset, iw, jw, ir, jr, kr, rw);
+  always #20 clk=~clk;
+  initial begin
+    $dumpfile("dump.vcd");
+	$dumpvars(1);
+    clk=0;
+    matlen=8'b00000100;
+    reset=1;
+    #10;
+    reset=0;
+    #500;
+    $finish;
+  end
+endmodule
+*/
