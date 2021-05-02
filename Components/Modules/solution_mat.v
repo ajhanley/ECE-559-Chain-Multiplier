@@ -10,14 +10,13 @@ integer i,j;
 //31x31 32 bit register;
 reg[31:0] matrix[960:0];
   always @(posedge rst)begin
-	for(i=0; i<30;i=i+1)begin
-		for(j=0;j<30;j=j+1)begin
+    for(i=0; i<31;i=i+1)begin
+      for(j=0;j<31;j=j+1)begin
           matrix[i*31+j] = 0;
 		end
 	end
 end
   always @(posedge clk) begin
-    mout = matrix;
     if(rw) begin
       matrix[iw*31+jw] = min;
       matrix[jw*31+iw] = k;
