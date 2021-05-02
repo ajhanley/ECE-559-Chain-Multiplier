@@ -7,32 +7,39 @@ module iterate(matlen,clk,reset,iw,jw,ir,jr,kr,rw);
   output rw;
   reg eq;
   integer x,y,z;
+  reg[7:0] iout,jout;
   reg[7:0] count1,count2,count3;
   always @(posedge reset)begin
     count1=matlen;
     count2=0;
     count3=count2;
+    eq=0;
     for(x=matlen; x>0; x=x-1)begin
-      for(y=0; y<x-1; y=y+1)begin
-        for(z=y; z<x; z=z+1)begin
+      for(y=0; y<x; y=y+1)begin
+        for(z=y; z<matlen-x+y; z=z+1)begin
           //change this delay as needed to make sure its not updating too fast
-          #5;
-          if(z==x-1)
-         	eq=1;   
+          #1000;
+          if(z==matlen-x+y-1)begin
+         	eq=1;  
+          end
           else
             eq=0;
-          #5;
+          #10;
+          eq=0;
         end
       end
     end
     eq=0;
+    y=0;
+    x=0;
+    z=0;
     
   end
   
   assign iw = y;
-  assign jw = (matlen-x+y+1);
+  assign jw = (matlen-x+y);
   assign ir = y;
-  assign jr = (matlen-x+y+1);
+  assign jr = (matlen-x+y);
   assign kr = z;
   assign rw = eq;
             

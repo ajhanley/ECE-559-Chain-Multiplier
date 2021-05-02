@@ -16,13 +16,18 @@ reg[31:0] matrix[960:0];
 		end
 	end
 end
-  always @(posedge clk) begin
-    if(rw) begin
+  always@(posedge rw)begin
+    //$display("i:%d, j: %d, min: %d, k: %d",iw,jw,min,k);
       matrix[iw*31+jw] = min;
       matrix[jw*31+iw] = k;
-    end else if(!rw) begin
+   //$display("%d Written to M[%d][%d] = %d",min,iw,jw,matrix[iw*31+jw]);
+  end
+  always @(posedge clk) begin
+    if(!rw) begin
+      //$display("i=%d, j= %d, k= %d , min= %d",ir,jr,kr,min);
+      //$display("Mik = %d matrix read = %d, mk1j = %d,matrix read = %d ",mik,matrix[ir*31+kr],mkj1,matrix[(kr+1)*31+jr]);
       readout1=matrix[ir*31+kr];
-      readout2=matrix[kr*31+jr];
+      readout2=matrix[(kr+1)*31+jr];
     end
     if(out)begin
       readout1 = matrix[in*31+jin];
