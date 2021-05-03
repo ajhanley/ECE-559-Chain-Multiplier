@@ -37,3 +37,42 @@ end
   assign mkj1 = readout2;
   assign mout = readout1;
 endmodule
+
+/*
+module tb;
+  reg[7:0] iw,jw,ir,jr,kr,in,jin;
+  reg clk,rw,rst;
+  reg[31:0] min,k;
+  reg out;
+  wire[31:0] mout,mik,mkj1;
+  integer i,j;
+  solution_mat m1(rst,clk,in,jin,iw,jw,ir,jr,kr,rw,min,k,mik,mkj1,out,mout);
+  always #10 clk=~clk;
+  initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars(1);
+    rst=0;
+    clk=0;
+    #20;
+    rst=1;
+    #20;
+    for(i=0; i<10; i = i+1)begin
+      for(j=0; j<10; j=j+1)begin
+       rw=0;
+       iw = i;
+       jw = j;
+       min = i;
+       k = i+1;
+       #20;
+       rw=1;
+       #40;
+       ir = i;
+       kr=j;
+       jr=i;
+       #40;
+      end
+    end
+    $finish;
+  end 
+endmodule
+*/

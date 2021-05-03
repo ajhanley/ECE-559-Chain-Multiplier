@@ -46,7 +46,24 @@ module iterate(matlen,clk,reset,iw,jw,ir,jr,kr,rw);
 endmodule 
 
 /*
-// Code your testbench here
-// or browse Examples
+module tb();
+  reg[7:0] matlen;
+  reg clk,rst;
+  wire[7:0]iw,jw,ir,jr,kr;
+  wire rw;
+  iterate loop(matlen,clk,rst,iw,jw,ir,jr,kr,rw);
+  
+  initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars(1);
+    matlen=10;
+    rst=0;
+    #5;
+    rst=1;
+    #100;
+    $finish;
+  end
+endmodule
 
+    
 */

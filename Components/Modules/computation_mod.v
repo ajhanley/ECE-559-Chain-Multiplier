@@ -48,8 +48,6 @@ module mux_2_1_32b(a,b,sel,out);
 endmodule
 
 /*
-// Code your testbench here
-// or browse Examples
 module tb();
   reg[7:0]  pk,pi,pj;
   reg[31:0] mki,mkj1,kc;
@@ -67,11 +65,12 @@ module tb();
     #2;
     rst=1;
     #1;
+    rst=0;
     pk=8'b0000001;
     pi=8'b0000001;
     pj=8'b0000001;
     mki = 32'h00000011;
-    mkj1 = 32'h0000111;
+    mkj1 = 32'h00000111;
     kc= 32'h00000001;
     clk=0;
     #15;
@@ -79,8 +78,24 @@ module tb();
     pi=8'b0000001;
     pj=8'b0000001;
     mki = 32'h00000001;
-    mkj1 = 32'h0000001;
-    kc= 32'h00000002;
+    mkj1 = 32'h00000001;
+    kc= 32'h00000001;
+    #10;
+    rst=1;
+    #5;
+    rst=0;
+    pk=8'b00000010;
+    pi=8'b00000010;
+    pj=8'b00000010;
+    mki = 32'h00000010;
+    mkj1 = 32'h00000010;
+    #40;
+    pk=8'b00000001;
+    pi=8'b00000001;
+    pj=8'b00000001;
+    mki = 32'h00000011;
+    mkj1 = 32'h00000111;
+    kc= 32'h00000001;
     #500;
     $finish;
   end
