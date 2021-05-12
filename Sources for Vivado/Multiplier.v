@@ -1,6 +1,7 @@
 `include "adder.v"
 //8 bit-3 Input Multiplier:
-module mult_8b_3in(A,B,C,P,zero);
+
+module my_mult_8b_3in(A,B,C,P,zero);
 input[7:0] A,B,C;
 output [31:0] P;
   input zero;

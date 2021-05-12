@@ -18,9 +18,9 @@ module computational_logic(pk,pi,pj,mki,mkj1,kc,clk,rst,ko,min);
   
   wire lt,gt,eq;
   wire sen;
-  mult_8b_3in mul(pk,pi,pj,mout,zero);
+  my_mult_8b_3in mul(pk,pi,pj,mout,zero);
   adder_3in_32b a1(mki,mkj1,mout,zero,sout,cout);
-  comparator_32b c1(sout,out1,eq,lt,gt);
+  my_comparator_32b c1(sout,out1,eq,lt,gt);
   mux_2_1_32b m1(sout,out1,lt,minmux);
   mux_2_1_32b m2(kc,out2,lt,kmux);
   assign sen = rst |clk;

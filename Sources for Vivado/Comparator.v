@@ -1,5 +1,5 @@
 //32b comparator
-module comparator_32b(x,y,eq,lt,gt);
+module my_comparator_32b(x,y,eq,lt,gt);
 input [31:0] x,y;
 output eq,lt,gt;
 wire w1,w2,w3,w4,w5,w6;
