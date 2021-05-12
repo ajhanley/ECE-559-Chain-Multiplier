@@ -1,0 +1,9 @@
+SolutionMatrix[          0][          0] =          0
+SolutionMatrix[          0][          1] =   16581375
+SolutionMatrix[          0][          2] =   33162750
+SolutionMatrix[          1][          0] =          1
+SolutionMatrix[          1][          1] =          0
+SolutionMatrix[          1][          2] =   16581375
+SolutionMatrix[          2][          0] =          1
+SolutionMatrix[          2][          1] =          2
+SolutionMatrix[          2][          2] =          0

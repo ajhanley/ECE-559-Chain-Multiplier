@@ -1,0 +1,4 @@
+SolutionMatrix[          0][          0] =          0
+SolutionMatrix[          0][          1] =          6
+SolutionMatrix[          1][          0] =          1
+SolutionMatrix[          1][          1] =          0
