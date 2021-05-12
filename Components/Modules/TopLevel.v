@@ -101,8 +101,8 @@ initial begin
 	rst=1;
 	#100;
   	rst=0;
+	DataIn=1;
 	MatrixData=8'hff;
-    DataIn=1;
 	#100;
 	MatrixData=8'hff;
 	#100;

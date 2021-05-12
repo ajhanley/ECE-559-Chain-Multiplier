@@ -44,9 +44,9 @@ class MatrixChainDecider:
                         cost = first+sec+last
                 self.computation_storage[i][j] = cost
 
-myMatrix = MatrixChainDecider(31)
-matrix = [10, 25, 15, 60, 30]
-# matrix = [255]*32
+myMatrix = MatrixChainDecider(30)
+# matrix = [10, 25, 15, 60, 30]
+matrix = [255]*31
 # matrix = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2]
 myMatrix.insert_matrix(matrix)
 myMatrix.clear_storage()
